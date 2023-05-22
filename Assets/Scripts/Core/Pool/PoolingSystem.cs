@@ -51,4 +51,12 @@ public class PoolingSystem : Singleton<PoolingSystem>, ISystem {
         }
         _CurrentManagersDictionary.Clear();
     }
+
+    public PoolManager getPoolManagerInstance(IdContainer idContainer) {
+        if (!_CurrentManagersDictionary.ContainsKey(idContainer.Id)) {
+            Debug.LogError("Error: Pooling manager not found with id: " + idContainer.Id);
+            return null;
+        }
+        return _CurrentManagersDictionary[idContainer.Id];
+    }
 }
